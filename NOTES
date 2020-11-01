@@ -1,0 +1,59 @@
+1. Name Resolution
+
+Python name resolution is odd. It is flow sensitive.
+Rather than implement it as flow sensitive, I will convert it
+to static and produce a warning.
+
+2. True Testing (from python.org) 
+
+Truth Value Testing
+
+Any object can be tested for truth value, for use in an if or while condition or as operand of the Boolean operations below. The following values are considered false:
+
+    * None
+
+    * False
+
+    * zero of any numeric type, for example, 0, 0L, 0.0, 0j.
+
+    * any empty sequence, for example, '', (), [].
+
+    * any empty mapping, for example, {}.
+
+    * instances of user-defined classes, if the class defines a __nonzero__() or __len__() method, when that method returns the integer zero or bool value False.3.1
+
+All other values are considered true -- so objects of many types are always true.
+
+Operations and built-in functions that have a Boolean result always return 0 or False for false and 1 or True for true, unless otherwise stated. (Important exception: the Boolean operations "or" and "and" always return one of their operands.) 
+
+3. Dynamism
+
+Classes can be defined under conditionals and are not visible until
+the definitions have been encountered.  This is likely something which
+will not survive compilation.
+
+Variables and bindings an be deleted.  Again, it is unlikely that this
+behavior will survive compilation.
+
+4. How should I handle methods of primitive types.  Currently members are handled by
+as member variables for all record types, but primitve types are not records.
+
+  a. does lookup really search the object itself then the "class" object?
+     is Python more of a prototype-like language
+  b. what does python do about primitive types?
+
+5. test t34.py illustrates how sharing occurs between classes and objects
+  
+  a. is this a good thing?  should there be an option to simply avoid this and
+     copy out as in other languages?
+
+  * implement copy out first as this is more appropriate for multi-threaded
+    programming and programming-in-the-large
+
+6. test t30.py illustrates how the assignment of lambda functions differs
+   depending on context (e.g. when they become "unbound" vs "bound" methods)
+
+  a. is this a good thing?  should there be an option to warn/error so as 
+     to help programmers avoid possible confusions and obfiscations from this?
+
+  * implement in a more rational way with warnings
