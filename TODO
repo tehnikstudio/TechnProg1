@@ -1,0 +1,31 @@
+add_list should take element_type of the merge
+implement setslice
+
+change c_code to be c_call and make it always a call
+
+add ability to use __pyc_rest__ to tag a symbol is_rest and add prim_rest to
+destruct the rest of a tuple.
+
+print should handle print "foo %d %s" % (1, "hi")
+
+__done__ "#operator" __c_code__ to __pyc_done__ __pyc_operator__ __pyc_c_code__
+- handle __path__ builtin
+- modules (__all__ is the list of "public" names or names not starting with "_")
+- import doesn't handle zip files
+- dead code detection at at Var level
+- import does lookup in the current package first
+- import explicit relative imports (e.g. one of . .. ..Filters ) 
+- call_method should know if it is global (in main) so as to call new_sym with
+the global flag
+- remove dead function members removed through static binding
+
+Support for C includes and external functions:
+
+__c_include__("stdio.h")
+argv = []
+n = __c_function__("int GET_ARGC();")
+ofor x in range(n):
+  argv[x] = __c_function__("const char *GET_ARGV(int)", x)
+
+
+change __pyc_declare__ to use sym_unknown?
